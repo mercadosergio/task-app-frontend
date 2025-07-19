@@ -1,0 +1,31 @@
+<div class="max-w-xl mx-auto mt-10 p-4 bg-white shadow rounded">
+    <h2 class="text-2xl font-bold mb-4">Tareas</h2>
+
+    @for (task of tasks; track task.id) {
+    <li class="flex justify-between items-center bg-gray-100 p-3 rounded">
+        <div class="flex-1">
+            @if (editingTaskId === task.id) {
+            <input [(ngModel)]="editedText" class="w-full p-2 border rounded" />
+            } @else {
+            <span class="text-lg">{{ task.text }}</span>
+            }
+        </div>
+
+        <div class="flex space-x-2 ml-4">
+            @if (editingTaskId !== task.id) {
+            <button (click)="startEditing(task)" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+                Editar
+            </button>
+            } @else {
+            <button (click)="saveTask(task)" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">
+                Guardar
+            </button>
+            }
+
+            <button (click)="deleteTask(task.id)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                Eliminar
+            </button>
+        </div>
+    </li>
+    }
+</div>
